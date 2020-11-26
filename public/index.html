@@ -7,17 +7,33 @@
     <link rel="stylesheet" href="css/style.css"/>
 </head>
 <body>
-    <div id="join-container">
-        <form action="chat.html" method="get">
-            <label>Nome de Usuário: </label>
-            <input type="text" id="UserName" name="UserName" required>
-            <label>Sala: </label>
-            <select id="Room" name="Room">
-                <option value="Animes">Animes</option>
-                <option value="Games">Games</option>
-            </select>
-            <input type="submit" class="btn" value="Entrar">
-        </form>
-    </div>
+
+    <section class="form-section">
+        <h1>Entrar no Chat</h1>
+
+        <div class="form-wrapper">
+
+            <form action="chat.html" method="get">
+
+                <div class="input-block">
+                    <label for="LoginUserName">Nome de Usuário: </label>
+                    <input type="text" id="UserName" name="UserName" required>
+                </div>
+                <div class="input-block">
+                    <label class ="formLabel">Sala: </label>
+                    <div class="div-select">
+                        <select id="Room" name="Room">
+                            <option value="Animes">Animes</option>
+                            <option value="Games">Games</option>
+                        </select>
+                    </div>
+                </div>           
+                <input type="submit" class="btn" value="Entrar">
+
+            </form>
+
+        </div>
+
+    </section>
 </body>
 </html>

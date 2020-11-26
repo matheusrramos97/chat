@@ -2,18 +2,19 @@ const ChatForm = document.getElementById('ChatForm')
 const ChatMessages = document.getElementById('ChatMessages')
 const RoomName = document.getElementById('RoomName')
 const UsersList = document.getElementById('Users')
+const btnLogin = document.querySelector(".btn");
 
 const {UserName, Room} = Qs.parse(location.search, {ignoreQueryPrefix: true});
 
 const socket = io()
-
-console.log(`UserName: ${UserName}, Room: ${Room}`)
 
 socket.emit('JoinRoom', {UserName, Room})
 
 socket.on('Message', Message =>{
     console.log(Message)
     OutputMessage(Message)
+
+    ChatMessages.scrollTop = ChatMessages.scrollHeight;
 })
 
 socket.on('RoomUsers', ({Room, Users}) => {
@@ -38,11 +39,11 @@ ChatForm.addEventListener('submit', e => {
 
 function OutputMessage(Message){
     const div = document.createElement('div');
-    div.classList.add('Message');
+    div.classList.add('message');
     const p = document.createElement('p');
     p.classList.add('meta');
     p.innerText = Message.UserName;
-    p.innerHTML += `<span>${Message.Time}</span>`;
+    p.innerHTML += `<span> ${Message.Time}</span>`;
     div.appendChild(p);
     const para = document.createElement('p');
     para.classList.add('text');

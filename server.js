@@ -27,7 +27,11 @@ io.on('connection', socket => {
 
         console.log(`User ${UserName} was connected to Room: ${Room}.`)
 
-        socket.emit('Message', FormatMessage(BotName, `Welcome to Room: ${Room}!.`));
+        socket.emit('Message', FormatMessage(BotName, `Bem vindo a sala de ${Room}!.`));
+
+        socket.broadcast.to(User.Room).emit('Message',
+            FormatMessage(BotName, `${User.UserName} se juntou a sala.`)
+        );
 
         io.to(User.Room).emit('RoomUsers', {
             Room: User.Room,
@@ -47,7 +51,7 @@ io.on('connection', socket => {
         if(User){
             io.to(User.Room).emit(
                 'Message',
-                FormatMessage(BotName, `${User.UserName} has left the chat.`)
+                FormatMessage(BotName, `${User.UserName} saiu da sala.`)
             );
 
             io.to(User.Room).emit('RoomUsers', {
